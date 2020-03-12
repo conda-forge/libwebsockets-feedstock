@@ -1,5 +1,5 @@
 {% set name = "libwebsockets" %}
-{% set version = "3.2.2" %}
+{% set version = "4.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/warmcat/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 166d6e17cab64bfc10c2a71799c298284540a1fa63f6ea3de5caccb34502243c
+  sha256: 412128c465c5e8e97f043db2f9e3458f5544fad7d5b894c4ab45743c536a0bcb
 
 build:
   number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
-  skip: True  # [not linux]
+  skip: true  # [not linux]
 
 requirements:
   build:
@@ -37,7 +37,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'canonical libwebsockets.org websocket library'
+  summary: canonical libwebsockets.org websocket library
 
   description: |
     Libwebsockets is a simple-to-use, pure C library providing client and server
