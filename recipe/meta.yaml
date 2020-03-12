@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/warmcat/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 4d7752a7ee2623e29a72fc21cf449f62d9c25a270e4b386de06755475337cc29
+  sha256: 412128c465c5e8e97f043db2f9e3458f5544fad7d5b894c4ab45743c536a0bcb
 
 build:
   number: 0
