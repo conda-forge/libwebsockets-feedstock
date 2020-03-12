@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/warmcat/{{ name }}/archive/{{ version }}.tar.gz
+  url: https://github.com/warmcat/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: 4d7752a7ee2623e29a72fc21cf449f62d9c25a270e4b386de06755475337cc29
 
 build:
