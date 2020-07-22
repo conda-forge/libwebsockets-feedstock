@@ -5,7 +5,7 @@ Home: https://libwebsockets.org
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: canonical libwebsockets.org websocket library
 
