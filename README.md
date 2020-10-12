@@ -5,9 +5,13 @@ Home: https://libwebsockets.org
 
 Package license: MIT
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libwebsockets-feedstock/blob/master/LICENSE.txt)
 
 Summary: canonical libwebsockets.org websocket library
+
+Development: https://github.com/warmcat/libwebsockets
+
+Documentation: https://libwebsockets.org/lws-api-doc-master/html/index.html
 
 Libwebsockets is a simple-to-use, pure C library providing client and server
 for **http/1**, **http/2**, **websockets** and other protocols in a security-minded,
@@ -34,10 +38,10 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
+              <td>linux_64_c_compiler_version7</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7527&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libwebsockets-feedstock?branchName=master&jobName=linux&configuration=linux_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libwebsockets-feedstock?branchName=master&jobName=linux&configuration=linux_64_c_compiler_version7" alt="variant">
                 </a>
               </td>
             </tr>
