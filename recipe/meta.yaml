@@ -1,5 +1,5 @@
 {% set name = "libwebsockets" %}
-{% set version = "4.1.4" %}
+{% set version = "4.1.6" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/warmcat/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 00da77b4b89db3e0b1a2778f756f08d55d7f6b1632e18d981fc399c412866147
+  sha256: 402e9a8df553c9cd2aff5d7a9758e9e5285bf3070c82539082864633db3deb83
 
 build:
   number: 0
