@@ -19,6 +19,11 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    # hmaarrfk: 2022/03/20
+    # Without this, the compiler seems to bug out on a sign change
+    # fixed in
+    # https://netdev.vger.kernel.narkive.com/vOZI4oX0/patch-netlink-fix-gcc-wconversion-compilation-warning
+    - sysroot_linux-64  2.17  # [linux64]
     - cmake
     - make    # [unix]
     - pkg-config
