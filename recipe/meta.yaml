@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/warmcat/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: 6fd33527b410a37ebc91bb64ca51bdabab12b076bc99d153d7c5dd405e4bdf90
+  patches:
+    - 001-warnings-not-error.patch  # [win]
 
 build:
   number: 0
@@ -37,6 +39,8 @@ test:
   commands:
     - test -d ${PREFIX}/include/libwebsockets  # [unix]
     - test -e ${PREFIX}/lib/libwebsockets${SHLIB_EXT}  # [unix]
+    - if not exist %LIBRARY_PREFIX%\include\libwebsockets (exit 1)  # [win]
+
 
 about:
   home: https://libwebsockets.org
