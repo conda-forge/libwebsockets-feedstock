@@ -30,13 +30,13 @@ requirements:
     - libuv
     - openssl
   run:
-    - openssl
     - libuv
+    - openssl
 
 test:
   commands:
-    - test -d ${PREFIX}/include/libwebsockets
-    - test -e ${PREFIX}/lib/libwebsockets.so
+    - test -d ${PREFIX}/include/libwebsockets  # [unix]
+    - test -e ${PREFIX}/lib/libwebsockets${SHLIB_EXT}  # [unix]
 
 about:
   home: https://libwebsockets.org
