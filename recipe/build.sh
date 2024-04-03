@@ -11,5 +11,4 @@ cmake ${CMAKE_ARGS} \
       -DLWS_WITH_SERVER_STATUS=ON \
       ..
 
-make -j ${CPU_COUNT}
-make install
+ninja install
