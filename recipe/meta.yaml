@@ -8,12 +8,13 @@ package:
 source:
   url: https://github.com/warmcat/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: 6fd33527b410a37ebc91bb64ca51bdabab12b076bc99d153d7c5dd405e4bdf90
+  patches:
+    - 001-warnings-not-error.patch  # [win]
 
 build:
   number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
-  skip: true  # [not linux]
 
 requirements:
   build:
@@ -25,19 +26,21 @@ requirements:
     # https://netdev.vger.kernel.narkive.com/vOZI4oX0/patch-netlink-fix-gcc-wconversion-compilation-warning
     - sysroot_linux-64  2.17  # [linux64]
     - cmake
-    - make    # [unix]
+    - ninja
     - pkg-config
   host:
     - libuv
     - openssl
   run:
-    - openssl
     - libuv
+    - openssl
 
 test:
   commands:
-    - test -d ${PREFIX}/include/libwebsockets
-    - test -e ${PREFIX}/lib/libwebsockets.so
+    - test -d ${PREFIX}/include/libwebsockets  # [unix]
+    - test -e ${PREFIX}/lib/libwebsockets${SHLIB_EXT}  # [unix]
+    - if not exist %LIBRARY_PREFIX%\include\libwebsockets (exit 1)  # [win]
+
 
 about:
   home: https://libwebsockets.org
@@ -58,3 +61,4 @@ about:
 extra:
   recipe-maintainers:
     - sodre
+    - wolfv
