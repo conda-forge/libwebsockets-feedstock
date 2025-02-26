@@ -1,5 +1,5 @@
 {% set name = "libwebsockets" %}
-{% set version = "4.3.3" %}
+{% set version = "4.3.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/warmcat/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 6fd33527b410a37ebc91bb64ca51bdabab12b076bc99d153d7c5dd405e4bdf90
+  sha256: 896b36aa063b4d05865f9ffee4404b26d4c2d3e2ba17b0b69f021b615377845e
   patches:
     - 001-warnings-not-error.patch  # [win]
 
@@ -19,12 +19,12 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     # hmaarrfk: 2022/03/20
     # Without this, the compiler seems to bug out on a sign change
     # fixed in
     # https://netdev.vger.kernel.narkive.com/vOZI4oX0/patch-netlink-fix-gcc-wconversion-compilation-warning
-    - sysroot_linux-64  2.17  # [linux64]
     - cmake
     - ninja
     - pkg-config
