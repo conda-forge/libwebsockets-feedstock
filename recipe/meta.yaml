@@ -1,5 +1,5 @@
 {% set name = "libwebsockets" %}
-{% set version = "4.3.5" %}
+{% set version = "4.5.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/warmcat/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 87f99ad32803ed325fceac5327aae1f5c1b417d54ee61ad36cffc8df5f5ab276
+  sha256: 04244efb7a6438c8c6bfc79b21214db5950f72c9cf57e980af57ca321aae87b2
   patches:
     - 001-warnings-not-error.patch  # [win]
 
