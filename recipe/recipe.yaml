@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  version: "4.5.8"
+
+package:
+  name: libwebsockets
+  version: ${{ version }}
+
+source:
+  url: https://github.com/warmcat/libwebsockets/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: b6ade658f4af3a823d0dc806ae5ef0623f0f4f5e2aeb895a0f77c4783840c30e
+  patches:
+    - if: win
+      then:
+        - patches/001-msvc-no-warnings-as-errors.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja
+    - pkg-config
+  host:
+    - libuv
+    - openssl
+  run_exports:
+    - ${{ pin_subpackage('libwebsockets', upper_bound='x.x') }}
+
+tests:
+  - package_contents:
+      include:
+        - libwebsockets.h
+        - libwebsockets/lws-context-vhost.h
+      lib:
+        - websockets
+
+about:
+  homepage: https://libwebsockets.org
+  license: MIT
+  license_file: LICENSE
+  summary: canonical libwebsockets.org websocket library
+  description: |
+    Libwebsockets is a simple-to-use, pure C library providing client and server
+    for **http/1**, **http/2**, **websockets** and other protocols in a security-minded,
+    lightweight, configurable, scalable and flexible way.  It's easy to build and
+    cross-build via cmake and is suitable for tasks from embedded RTOS through mass
+    cloud serving.
+  repository: https://github.com/warmcat/libwebsockets
+  documentation: https://libwebsockets.org/lws-api-doc-master/html/index.html
+
+extra:
+  recipe-maintainers:
+    - sodre
+    - wolfv
+    - pavelzw
