@@ -39,6 +39,27 @@ tests:
         - libwebsockets/lws-context-vhost.h
       lib:
         - websockets
+  # builds a small program against the exported cmake config, which has a history
+  # of pointing at build-time-only locations of openssl
+  - script:
+      - if: unix
+        then:
+          - cmake -GNinja -S consumer_test -B consumer_test/build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release
+          - cmake --build consumer_test/build
+          - ./consumer_test/build/lws_version
+        else:
+          - cmake -GNinja -S consumer_test -B consumer_test/build %CMAKE_ARGS% -DCMAKE_BUILD_TYPE=Release
+          - cmake --build consumer_test/build
+          - consumer_test\build\lws_version.exe
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - cmake
+        - ninja
+    files:
+      recipe:
+        - consumer_test/
 
 about:
   homepage: https://libwebsockets.org
