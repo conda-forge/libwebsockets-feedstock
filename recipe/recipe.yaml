@@ -14,6 +14,9 @@ source:
     - if: win
       then:
         - patches/001-msvc-no-warnings-as-errors.patch
+    - if: linux
+      then:
+        - patches/002-include-netinet-in-before-linux-headers.patch
 
 build:
   number: 0
