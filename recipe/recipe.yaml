@@ -22,7 +22,6 @@ requirements:
   build:
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
-    - ${{ compiler('cxx') }}
     - cmake
     - ninja
     - pkg-config
