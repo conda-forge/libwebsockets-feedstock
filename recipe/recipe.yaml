@@ -16,7 +16,7 @@ source:
         - patches/001-msvc-no-warnings-as-errors.patch
     - if: linux
       then:
-        - patches/002-include-netinet-in-before-linux-headers.patch
+        - patches/002-use-linux-in6-h-instead-of-linux-ipv6-h.patch
 
 build:
   number: 0

@@ -1,0 +1,21 @@
+diff --git a/lib/plat/unix/unix-sockets.c b/lib/plat/unix/unix-sockets.c
+index 52d62fb..0a052c4 100644
+--- a/lib/plat/unix/unix-sockets.c
++++ b/lib/plat/unix/unix-sockets.c
+@@ -28,7 +28,15 @@
+ #include "private-lib-core.h"
+ 
+ #if defined(LWS_HAVE_LINUX_IPV6_H)
+-#include <linux/ipv6.h>
++/*
++ * Only IPV6_ADDR_PREFERENCES / IPV6_PREFER_SRC_* are wanted from here, and they
++ * live in <linux/in6.h>, whose type definitions are guarded by the __UAPI_DEF_*
++ * machinery so they coexist with glibc's <netinet/in.h>.  <linux/ipv6.h> adds
++ * struct in6_pktinfo and struct ip6_mtuinfo without any such guard, which
++ * collides with the definitions private-lib-core.h already pulled in from
++ * <netinet/in.h>.
++ */
++#include <linux/in6.h>
+ #endif
+ 
+ #include <sys/ioctl.h>
