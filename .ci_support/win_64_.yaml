@@ -6,8 +6,6 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
-cxx_compiler:
-- vs2022
 openssl:
 - '3.5'
 target_platform:
