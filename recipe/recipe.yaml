@@ -11,9 +11,6 @@ source:
   url: https://github.com/warmcat/libwebsockets/archive/refs/tags/v${{ version }}.tar.gz
   sha256: f853c6582101cfcee3a5a9e28ae92ab19d9735c5f31f0bb2e9794b5106123962
   patches:
-    - if: win
-      then:
-        - patches/001-msvc-no-warnings-as-errors.patch
     - if: linux
       then:
         - patches/002-use-linux-in6-h-instead-of-linux-ipv6-h.patch

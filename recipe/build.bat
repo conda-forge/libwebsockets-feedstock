@@ -4,10 +4,18 @@
 :: it finds into the cmake config it exports, and absolute paths from the build
 :: environment (openssl in the build prefix, the Windows SDK import libraries that
 :: FindOpenSSL resolves) are meaningless for consumers of the package.
+::
+:: HTTP/3 (on by default since 5.0.0) forces the TLS backend over to GnuTLS, and
+:: with HTTP/3 off lws would default to SChannel on Windows.  Keep the openssl
+:: backend the package has always been built against.
 cmake -GNinja -S . -B build %CMAKE_ARGS% ^
       -DCMAKE_BUILD_TYPE=Release ^
       -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+      -DDISABLE_WERROR=ON ^
       -DLWS_UNIX_SOCK=ON ^
+      -DLWS_WITH_HTTP3=OFF ^
+      -DLWS_ROLE_QUIC=OFF ^
+      -DLWS_WITH_SCHANNEL=OFF ^
       -DLWS_WITH_STATIC=OFF ^
       -DLWS_WITHOUT_TESTAPPS=ON ^
       -DLWS_WITH_HTTP_PROXY=ON ^
