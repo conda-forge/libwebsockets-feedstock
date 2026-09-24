@@ -1,11 +1,25 @@
+From 6bc056c65ca877eeb3b341d3dc31d42978044637 Mon Sep 17 00:00:00 2001
+From: conda-forge <conda@conda>
+Date: Thu, 24 Sep 2026 22:28:50 +0200
+Subject: [PATCH] use <linux/in6.h> instead of <linux/ipv6.h>
+
+<linux/ipv6.h> defines struct in6_pktinfo and struct ip6_mtuinfo without the
+__UAPI_DEF_* guards, so it clashes with the glibc <netinet/in.h> definitions
+that private-lib-core.h has already pulled in.  Only the
+IPV6_ADDR_PREFERENCES / IPV6_PREFER_SRC_* constants are needed here and those
+live in the guard-aware <linux/in6.h>.
+---
+ lib/plat/unix/unix-sockets.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
 diff --git a/lib/plat/unix/unix-sockets.c b/lib/plat/unix/unix-sockets.c
-index 52d62fb..0a052c4 100644
+index 6297cbb..cdc2915 100644
 --- a/lib/plat/unix/unix-sockets.c
 +++ b/lib/plat/unix/unix-sockets.c
-@@ -28,7 +28,15 @@
- #include "private-lib-core.h"
- 
+@@ -30,7 +30,15 @@
  #if defined(LWS_HAVE_LINUX_IPV6_H)
+ #include <linux/version.h>
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 12, 0)
 -#include <linux/ipv6.h>
 +/*
 + * Only IPV6_ADDR_PREFERENCES / IPV6_PREFER_SRC_* are wanted from here, and they
@@ -17,5 +31,5 @@ index 52d62fb..0a052c4 100644
 + */
 +#include <linux/in6.h>
  #endif
+ #endif
  
- #include <sys/ioctl.h>
