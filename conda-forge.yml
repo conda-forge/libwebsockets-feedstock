@@ -1,5 +1,7 @@
 bot:
   automerge: true
+build_platform:
+  win_arm64: win_64
 conda_build_tool: rattler-build
 conda_forge_output_validation: true
 conda_install_tool: pixi
