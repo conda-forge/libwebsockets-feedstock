@@ -19,7 +19,7 @@ source:
         - patches/002-use-linux-in6-h-instead-of-linux-ipv6-h.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
